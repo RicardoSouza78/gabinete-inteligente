@@ -1,0 +1,159 @@
+@import "tailwindcss";
+
+:root {
+  --background: #0b1120; /* Azul quase preto */
+  --foreground: #ffffff;
+  
+  --card: #152038; /* Azul marinho escuro */
+  --card-foreground: #ffffff;
+  
+  --primary: #4a5db5; /* Primary (Marca/Azul) */
+  --primary-foreground: #ffffff;
+  
+  --secondary: #94a3b8; /* Texto Secundário */
+  --secondary-foreground: #ffffff;
+  
+  --accent: #ffd100; /* Accent/CTA Amarelo */
+  --accent-foreground: #0b1120; /* Texto sobre o botão amarelo */
+  
+  --destructive: #ef4444;
+  --destructive-foreground: #ffffff;
+  
+  --border: rgba(148, 163, 184, 0.12); /* Secondary text based translucent border */
+  --input: rgba(148, 163, 184, 0.08);
+  --ring: #4a5db5;
+  
+  --radius: 1rem;
+  
+  /* Logo variables for Dark Mode */
+  --logo-text: #ffffff;
+  --logo-subtext: #94a3b8;
+  
+  /* Glass variables for Dark Mode */
+  --glass-bg: rgba(21, 32, 56, 0.65);
+  --glass-border: rgba(148, 163, 184, 0.12);
+  --glass-panel-from: rgba(21, 32, 56, 0.75);
+  --glass-panel-to: rgba(11, 17, 32, 0.95);
+  --glass-panel-shadow: rgba(0, 0, 0, 0.45);
+}
+
+html[data-theme="light"] {
+  --background: #f8fafc; /* Cinza azulado muito claro */
+  --foreground: #243580; /* Azul da logo */
+  
+  --card: #ffffff; /* Branco puro */
+  --card-foreground: #243580;
+  
+  --secondary: #64748b; /* Cinza neutro */
+  --secondary-foreground: #243580;
+  
+  --primary: #243580; /* Azul da logo para botões e estrutura */
+  --primary-foreground: #ffffff;
+  
+  --accent: #ffd100; /* Amarelo da logo */
+  --accent-foreground: #243580; /* Texto sobre o botão amarelo */
+  
+  --border: rgba(100, 116, 139, 0.18); /* Divisores baseados em cinza neutro */
+  --input: #f1f5f9;
+  --ring: #243580;
+  
+  /* Logo variables for Light Mode */
+  --logo-text: #243580;
+  --logo-subtext: #243580;
+  
+  /* Glass variables for Light Mode */
+  --glass-bg: rgba(255, 255, 255, 0.75);
+  --glass-border: rgba(36, 53, 128, 0.06);
+  --glass-panel-from: rgba(255, 255, 255, 0.95);
+  --glass-panel-to: rgba(241, 245, 249, 0.98);
+  --glass-panel-shadow: rgba(36, 53, 128, 0.04);
+}
+
+
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-border: var(--border);
+  --color-logo-text: var(--logo-text);
+  --color-logo-subtext: var(--logo-subtext);
+  
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+}
+
+/* Base styles with transition */
+body {
+  background-color: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans);
+  transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}
+
+/* Glassmorphism Utilities with CSS Variable adaptivity */
+.glass {
+  background: var(--glass-bg);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--glass-border);
+  transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+.glass-panel {
+  background: linear-gradient(145deg, var(--glass-panel-from) 0%, var(--glass-panel-to) 100%);
+  backdrop-filter: blur(16px);
+  border: 1px solid var(--glass-border);
+  box-shadow: 0 4px 30px var(--glass-panel-shadow);
+  transition: background-color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Smooth gradients for text */
+.text-gradient {
+  background: linear-gradient(to right, #3b82f6, #8b5cf6);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Custom styling for inputs and selects for light/dark modes */
+input, select, textarea {
+  transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease;
+}
+
+/* Toast Animations */
+@keyframes toast-slide-in {
+  from {
+    transform: translate3d(0, 100%, 0) scale(0.95);
+    opacity: 0;
+  }
+  to {
+    transform: translate3d(0, 0, 0) scale(1);
+    opacity: 1;
+  }
+}
+
+.animate-toast-in {
+  animation: toast-slide-in 0.3s cubic-bezier(0.21, 1.02, 0.43, 1.01) forwards;
+}
+
+/* Garante o contraste correto de texto sobre os botões primary e accent de CTA */
+button.bg-primary, 
+a.bg-primary,
+.bg-primary {
+  color: var(--primary-foreground) !important;
+}
+
+button.bg-accent, 
+a.bg-accent,
+.bg-accent {
+  color: var(--accent-foreground) !important;
+}
+
+
