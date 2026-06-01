@@ -220,7 +220,7 @@ Transcrição gerada em: ${new Date().toLocaleString('pt-BR')}
   });
 
   const speakers = displaySession
-    ? ['Todos', ...Array.from(new Set(displaySession.transcript.map((l: any) => l.speaker)))]
+    ? ['Todos', ...(Array.from(new Set(displaySession.transcript.map((l: any) => l.speaker))) as string[])]
     : [];
 
   return (

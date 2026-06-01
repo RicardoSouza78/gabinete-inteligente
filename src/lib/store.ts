@@ -327,7 +327,7 @@ const DEFAULT_DIARIO = [
 // --- CORE STORE CLASS ---
 
 class CentralStore {
-  private data: Record<string, any> = {};
+  public data: Record<string, any> = {};
 
   constructor() {
     this.init();
